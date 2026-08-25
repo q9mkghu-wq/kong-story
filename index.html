@@ -250,6 +250,51 @@
     align-items:center; justify-content:center; gap:14px; text-align:center; padding:20px;
   }
   .game-over-banner h3{font-size:30px; margin:0;}
+
+  /* ---------- Game 4: memory match ---------- */
+  .memory-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; max-width:640px; margin:0 auto;}
+  .mem-card{
+    aspect-ratio:3/4; border-radius:16px; position:relative; perspective:600px; background:none; border:none;
+  }
+  .mem-card-inner{
+    position:relative; width:100%; height:100%; transition:transform .4s; transform-style:preserve-3d;
+  }
+  .mem-card.flipped .mem-card-inner{transform:rotateY(180deg);}
+  .mem-face{
+    position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; display:flex;
+    align-items:center; justify-content:center; text-align:center; padding:6px;
+  }
+  .mem-back{background:var(--purple); font-size:30px; color:#fff; border:3px solid var(--purple-dark);}
+  .mem-front{
+    background:#fff; border:3px solid #DDE4E9; transform:rotateY(180deg); flex-direction:column; gap:4px;
+    font-family:'Jua'; font-size:15px;
+  }
+  .mem-front .mem-emoji{font-size:32px;}
+  .mem-card.matched .mem-front{background:#DFF6E8; border-color:var(--green);}
+
+  /* ---------- Game 5: basket catch ---------- */
+  .basket{
+    position:absolute; bottom:6px; width:110px; height:64px; font-size:44px; text-align:center;
+    line-height:64px; user-select:none; touch-action:none;
+  }
+  .catch-item{
+    position:absolute; top:-60px; background:#fff; border:3px solid #DDE4E9; border-radius:16px;
+    padding:8px 14px; font-family:'Jua'; font-size:20px; box-shadow:0 4px 0 #DDE4E9; pointer-events:none;
+  }
+
+  /* ---------- Game 6: snail race ---------- */
+  .race-track{
+    position:relative; height:90px; background:#EAF6E4; border-radius:16px; margin:10px 0;
+    border:3px solid #DDE4E9; overflow:hidden;
+  }
+  .race-track::after{
+    content:'🏁'; position:absolute; right:6px; top:50%; transform:translateY(-50%); font-size:34px;
+  }
+  .racer{
+    position:absolute; top:50%; transform:translateY(-50%); font-size:38px; left:0;
+    transition:left .6s cubic-bezier(.34,1.56,.64,1);
+  }
+  .race-label{font-family:'Jua'; font-size:16px; color:var(--text-soft); margin-bottom:2px;}
   .story-panel{
     background:var(--card); border-radius:32px; padding:40px; max-width:720px; margin:0 auto;
     box-shadow:0 12px 0 #DDE4E9;
@@ -465,6 +510,21 @@
       <h2>풍선 낱말<br>터뜨리기</h2>
       <p>정답 풍선을 콕!</p>
     </button>
+    <button class="card" onclick="goTo('game4')">
+      <span class="icon">🃏</span>
+      <h2>카드 짝<br>맞추기</h2>
+      <p>그림과 낱말 짝 찾기</p>
+    </button>
+    <button class="card" onclick="goTo('game5')">
+      <span class="icon">🧺</span>
+      <h2>바구니로<br>받아요</h2>
+      <p>바구니를 움직여 받기</p>
+    </button>
+    <button class="card" onclick="goTo('game6')">
+      <span class="icon">🐌</span>
+      <h2>달팽이 경주</h2>
+      <p>퀴즈 맞히고 앞으로!</p>
+    </button>
   </div>
 </div>
 
@@ -523,6 +583,64 @@
     <button class="speak-btn" style="padding:8px 20px; font-size:16px; margin-left:10px;" onclick="speakG3Target()">🔊</button>
   </div>
   <div class="play-area" id="g3-area"></div>
+</div>
+
+<!-- ============ GAME 4: 카드 짝 맞추기 ============ -->
+<div class="screen" id="screen-game4">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🃏 카드 짝 맞추기</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div class="game-hud">
+    <span class="score" id="g4-score">⭐ 0쌍</span>
+  </div>
+  <div class="game-target" style="position:relative;">
+    그림과 낱말 카드를 뒤집어서 짝을 찾아보세요!
+    <div class="memory-grid" id="g4-grid" style="margin-top:18px;"></div>
+  </div>
+</div>
+
+<!-- ============ GAME 5: 바구니로 받아요 ============ -->
+<div class="screen" id="screen-game5">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🧺 바구니로 받아요</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div class="game-hud">
+    <span class="lives" id="g5-lives">❤️❤️❤️</span>
+    <span class="score" id="g5-score">⭐ 0점</span>
+  </div>
+  <div class="game-target">
+    이 낱말만 받아보세요: <span class="word" id="g5-target">-</span>
+    <button class="speak-btn" style="padding:8px 20px; font-size:16px; margin-left:10px;" onclick="speakG5Target()">🔊</button>
+    <div class="sub-label" style="font-size:15px;">바구니를 손가락(또는 마우스)으로 밀어서 움직여보세요</div>
+  </div>
+  <div class="play-area" id="g5-area">
+    <div class="basket" id="g5-basket">🧺</div>
+  </div>
+</div>
+
+<!-- ============ GAME 6: 달팽이 경주 ============ -->
+<div class="screen" id="screen-game6">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🐌 달팽이 경주</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div style="max-width:640px; margin:0 auto;">
+    <div class="race-label">콩이 달팽이</div>
+    <div class="race-track"><div class="racer" id="g6-player">🐌</div></div>
+    <div class="race-label">라이벌 달팽이</div>
+    <div class="race-track"><div class="racer" id="g6-rival">🐢</div></div>
+  </div>
+  <div class="display-panel" style="margin-top:24px;">
+    <div class="sub-label">소리를 듣고 알맞은 낱말을 찾아보세요</div>
+    <button class="speak-btn" onclick="speakG6Target()">🔊 소리 듣기</button>
+  </div>
+  <div class="quiz-options words" id="g6-options" style="margin-top:18px;"></div>
+  <div class="feedback" id="g6-feedback"></div>
 </div>
 
 <script>
@@ -845,6 +963,9 @@ function goTo(name){
   if(name==='game1'){ startGame1(); }
   if(name==='game2'){ startGame2(); }
   if(name==='game3'){ startGame3(); }
+  if(name==='game4'){ startGame4(); }
+  if(name==='game5'){ startGame5(); }
+  if(name==='game6'){ startGame6(); }
   window.scrollTo({top:0, behavior:'smooth'});
 }
 function addStar(section){
@@ -1243,7 +1364,9 @@ function gameTimer(fn, ms, repeat){
 function stopAllGames(){
   activeGameTimers.forEach(t=> t.repeat ? clearInterval(t.id) : clearTimeout(t.id));
   activeGameTimers = [];
-  g1Active = g2Active = g3Active = false;
+  g1Active = g2Active = g3Active = g4Active = g5Active = g6Active = false;
+  if(g5RafId) cancelAnimationFrame(g5RafId);
+  g5RafId = null;
 }
 function updateLivesHUD(gameKey, lives){
   document.getElementById(gameKey+'-lives').textContent = '❤️'.repeat(Math.max(lives,0)) + '🖤'.repeat(Math.max(3-lives,0));
@@ -1464,6 +1587,219 @@ function endGame3(){
   g3Active = false;
   stopAllGames();
   showGameOverBanner(document.getElementById('g3-area'), g3Score, startGame3);
+}
+
+/* ---- Game 4: 카드 짝 맞추기 ---- */
+let g4Active=false, g4Score=0, g4First=null, g4Second=null, g4Lock=false, g4MatchedCount=0, g4TotalPairs=6;
+function startGame4(){
+  stopAllGames();
+  g4Active = true; g4Score=0; g4First=null; g4Second=null; g4Lock=false; g4MatchedCount=0;
+  updateScoreHUD4();
+  const shuffledWords = [...wordsList].sort(()=>Math.random()-0.5).slice(0, g4TotalPairs);
+  let cards = [];
+  shuffledWords.forEach((w, i)=>{
+    cards.push({pairId:i, type:'emoji', content:w.emoji, matched:false});
+    cards.push({pairId:i, type:'word', content:w.word, matched:false});
+  });
+  cards = cards.sort(()=>Math.random()-0.5);
+  const grid = document.getElementById('g4-grid');
+  grid.innerHTML='';
+  cards.forEach((c, idx)=>{
+    const btn = document.createElement('button');
+    btn.className='mem-card';
+    btn.dataset.idx = idx;
+    btn.dataset.pairId = c.pairId;
+    btn.innerHTML = `<div class="mem-card-inner">
+      <div class="mem-face mem-back">❓</div>
+      <div class="mem-face mem-front">${c.type==='emoji' ? `<span class="mem-emoji">${c.content}</span>` : `<span>${c.content}</span>`}</div>
+    </div>`;
+    btn.onclick = ()=> flipG4Card(btn, c);
+    grid.appendChild(btn);
+  });
+}
+function updateScoreHUD4(){ document.getElementById('g4-score').textContent = '⭐ ' + g4Score + '쌍'; }
+function flipG4Card(btn, cardData){
+  if(!g4Active || g4Lock || btn.classList.contains('flipped') || btn.classList.contains('matched')) return;
+  btn.classList.add('flipped');
+  if(!g4First){
+    g4First = {btn, cardData};
+    return;
+  }
+  g4Second = {btn, cardData};
+  g4Lock = true;
+  if(g4First.cardData.pairId === g4Second.cardData.pairId){
+    g4First.btn.classList.add('matched');
+    g4Second.btn.classList.add('matched');
+    g4Score++; updateScoreHUD4(); addStar('game');
+    g4MatchedCount++;
+    g4First=null; g4Second=null; g4Lock=false;
+    if(g4MatchedCount >= g4TotalPairs){
+      gameTimer(()=> showGameOverBanner(document.querySelector('#screen-game4 .game-target'), g4Score, startGame4), 500, false);
+    }
+  } else {
+    gameTimer(()=>{
+      g4First.btn.classList.remove('flipped');
+      g4Second.btn.classList.remove('flipped');
+      g4First=null; g4Second=null; g4Lock=false;
+    }, 900, false);
+  }
+}
+
+/* ---- Game 5: 바구니로 받아요 ---- */
+let g5Active=false, g5Score=0, g5Lives=3, g5Target=null, g5Items=[], g5BasketX=310, g5RafId=null, g5LastTime=0, g5SpawnAcc=0;
+function startGame5(){
+  stopAllGames();
+  g5Active = true; g5Score=0; g5Lives=3; g5Items=[]; g5SpawnAcc=0;
+  updateLivesHUD('g5', g5Lives);
+  updateScoreHUD('g5', g5Score);
+  const area = document.getElementById('g5-area');
+  area.querySelectorAll('.catch-item, .game-over-banner').forEach(el=>el.remove());
+  g5BasketX = area.clientWidth/2 - 55;
+  const basket = document.getElementById('g5-basket');
+  basket.style.left = g5BasketX+'px';
+  pickG5Target();
+  area.onpointermove = (e)=>{
+    if(!g5Active) return;
+    const rect = area.getBoundingClientRect();
+    g5BasketX = Math.min(Math.max(e.clientX - rect.left - 55, 0), rect.width-110);
+    basket.style.left = g5BasketX+'px';
+  };
+  g5LastTime = performance.now();
+  g5RafId = requestAnimationFrame(g5Loop);
+}
+function pickG5Target(){
+  g5Target = wordsList[Math.floor(Math.random()*wordsList.length)];
+  document.getElementById('g5-target').textContent = g5Target.emoji + ' ' + g5Target.word;
+  speakG5Target();
+}
+function speakG5Target(){ if(g5Target) speak(g5Target.word); }
+function g5Loop(now){
+  if(!g5Active) return;
+  const dt = now - g5LastTime;
+  g5LastTime = now;
+  const area = document.getElementById('g5-area');
+  const areaH = area.clientHeight;
+
+  g5SpawnAcc += dt;
+  if(g5SpawnAcc > 1100){
+    g5SpawnAcc = 0;
+    const item = wordsList[Math.floor(Math.random()*wordsList.length)];
+    const el = document.createElement('div');
+    el.className='catch-item';
+    el.textContent = item.emoji + ' ' + item.word;
+    const x = 10 + Math.random()*(area.clientWidth-120);
+    el.style.left = x+'px';
+    area.appendChild(el);
+    g5Items.push({el, x, y:-60, speed:0.09 + Math.random()*0.04, isTarget: item.word===g5Target.word});
+  }
+
+  for(let i=g5Items.length-1; i>=0; i--){
+    const it = g5Items[i];
+    it.y += it.speed*dt;
+    it.el.style.top = it.y+'px';
+    const basketTop = areaH-70;
+    if(it.y+50 >= basketTop){
+      const overlap = (it.x+90 > g5BasketX) && (it.x < g5BasketX+110);
+      if(overlap){
+        if(it.isTarget){
+          g5Score++; updateScoreHUD('g5', g5Score); addStar('game'); pickG5Target();
+        } else {
+          g5Lives--; updateLivesHUD('g5', g5Lives);
+        }
+        it.el.remove(); g5Items.splice(i,1);
+        if(g5Lives<=0){ endGame5(); return; }
+        continue;
+      }
+    }
+    if(it.y > areaH){
+      if(it.isTarget){
+        g5Lives--; updateLivesHUD('g5', g5Lives);
+        if(g5Lives<=0){ it.el.remove(); g5Items.splice(i,1); endGame5(); return; }
+      }
+      it.el.remove(); g5Items.splice(i,1);
+    }
+  }
+  g5RafId = requestAnimationFrame(g5Loop);
+}
+function endGame5(){
+  g5Active = false;
+  if(g5RafId) cancelAnimationFrame(g5RafId);
+  document.getElementById('g5-area').querySelectorAll('.catch-item').forEach(el=>el.remove());
+  showGameOverBanner(document.getElementById('g5-area'), g5Score, startGame5);
+}
+
+/* ---- Game 6: 달팽이 경주 ---- */
+let g6Active=false, g6PlayerPos=0, g6RivalPos=0, g6Target=null, g6Answer=null;
+function startGame6(){
+  stopAllGames();
+  g6Active = true; g6PlayerPos=0; g6RivalPos=0;
+  document.getElementById('g6-player').style.left='0%';
+  document.getElementById('g6-rival').style.left='0%';
+  newG6Round();
+}
+function newG6Round(){
+  const correctIdx = Math.floor(Math.random()*wordsList.length);
+  g6Answer = correctIdx;
+  document.getElementById('g6-feedback').textContent='';
+  document.getElementById('g6-feedback').className='feedback';
+
+  let options=[correctIdx];
+  while(options.length<3){
+    const r = Math.floor(Math.random()*wordsList.length);
+    if(!options.includes(r)) options.push(r);
+  }
+  options.sort(()=>Math.random()-0.5);
+  const wrap = document.getElementById('g6-options');
+  wrap.innerHTML='';
+  options.forEach(i=>{
+    const b = document.createElement('button');
+    b.className='opt-btn word-opt';
+    b.textContent = wordsList[i].emoji + '  ' + wordsList[i].word;
+    b.onclick = ()=> checkG6Answer(i, b);
+    wrap.appendChild(b);
+  });
+  speakG6Target();
+}
+function speakG6Target(){ if(g6Answer!==null) speak(wordsList[g6Answer].word); }
+function checkG6Answer(i, btn){
+  if(!g6Active) return;
+  const fb = document.getElementById('g6-feedback');
+  document.querySelectorAll('#g6-options .opt-btn').forEach(b=>b.disabled=true);
+  if(i===g6Answer){
+    btn.classList.add('correct');
+    fb.textContent = '정답! 콩이 달팽이가 앞으로 쓩! 🎉';
+    fb.className='feedback ok';
+    g6PlayerPos = Math.min(100, g6PlayerPos+16);
+    document.getElementById('g6-player').style.left = g6PlayerPos+'%';
+    addStar('game');
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = '아쉬워요! 라이벌 달팽이가 앞으로 가요.';
+    fb.className='feedback no';
+    g6RivalPos = Math.min(100, g6RivalPos+16);
+    document.getElementById('g6-rival').style.left = g6RivalPos+'%';
+  }
+  gameTimer(()=>{
+    if(g6PlayerPos>=100 || g6RivalPos>=100){
+      endGame6();
+    } else {
+      document.querySelectorAll('#g6-options .opt-btn').forEach(b=>{b.disabled=false; b.classList.remove('correct','wrong');});
+      newG6Round();
+    }
+  }, 1300, false);
+}
+function endGame6(){
+  g6Active = false;
+  const won = g6PlayerPos >= g6RivalPos;
+  const fb = document.getElementById('g6-feedback');
+  fb.textContent = won ? '🎉 콩이 달팽이가 이겼어요!' : '아깝다! 다음엔 콩이가 이길 거예요.';
+  fb.className = won ? 'feedback ok' : 'feedback no';
+  document.getElementById('g6-options').innerHTML='';
+  const btn = document.createElement('button');
+  btn.className='nav-btn';
+  btn.textContent='🔄 다시 경주하기';
+  btn.onclick = startGame6;
+  document.getElementById('g6-options').appendChild(btn);
 }
 
 /* init */
