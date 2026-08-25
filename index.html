@@ -347,6 +347,64 @@
     position:absolute; top:50%; left:50%; width:140px; margin-left:0; text-align:center;
     font-family:'Jua'; font-size:16px; color:#fff; transform-origin:0 0;
   }
+
+  /* ---------- Game 11: speed quiz ---------- */
+  .timer-bar-wrap{max-width:500px; margin:0 auto 18px; height:20px; background:#DDE4E9; border-radius:12px; overflow:hidden;}
+  .timer-bar{height:100%; background:var(--coral); width:100%; transition:width 1s linear;}
+
+  /* ---------- Game 12: block tower ---------- */
+  .tower-area{
+    position:relative; width:100%; max-width:340px; height:460px; margin:0 auto;
+    background:linear-gradient(#DCEEFF, #F0F7FF); border-radius:20px; border:4px solid #CFE3F5;
+    display:flex; flex-direction:column-reverse; align-items:center; padding:10px; box-sizing:border-box;
+    box-shadow:0 8px 0 #CFE3F5;
+  }
+  .tower-block{
+    width:88%; height:38px; margin-top:4px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    font-family:'Jua'; font-size:16px; color:#fff; box-shadow:inset 0 -4px 0 rgba(0,0,0,0.15);
+    animation: dropIn .35s ease-out;
+  }
+  @keyframes dropIn{ from{ transform:translateY(-220px); opacity:0.4; } to{ transform:translateY(0); opacity:1; } }
+  .shake{animation: shakeIt .4s;}
+  @keyframes shakeIt{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-8px);} 75%{transform:translateX(8px);} }
+
+  /* ---------- Game 13: treasure boxes ---------- */
+  .box-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:520px; margin:0 auto;}
+  .treasure-box{
+    aspect-ratio:1; border-radius:18px; background:var(--yellow); border:3px solid var(--yellow-dark);
+    font-size:40px; display:flex; align-items:center; justify-content:center; box-shadow:0 5px 0 var(--yellow-dark);
+    transition:transform .15s;
+  }
+  .treasure-box.opened{background:#fff; border-color:#DDE4E9; box-shadow:0 5px 0 #DDE4E9; flex-direction:column; font-size:15px; font-family:'Jua'; gap:4px;}
+  .treasure-box.opened.right{background:#DFF6E8; border-color:var(--green);}
+  .treasure-box:not(.opened):active{transform:scale(0.94);}
+
+  /* ---------- Game 14: rhythm tap ---------- */
+  .rhythm-track{
+    position:relative; height:120px; max-width:700px; margin:0 auto 16px; background:#EAF2FB;
+    border-radius:20px; border:4px solid #CFE3F5; overflow:hidden;
+  }
+  .rhythm-zone{
+    position:absolute; top:0; bottom:0; width:110px; right:40px; border-left:4px dashed var(--purple);
+    border-right:4px dashed var(--purple); background:rgba(140,122,230,0.12);
+  }
+  .rhythm-tile{
+    position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:3px solid #DDE4E9;
+    border-radius:14px; padding:8px 14px; font-family:'Jua'; font-size:18px; box-shadow:0 4px 0 #DDE4E9;
+  }
+  .hit-btn{
+    display:block; margin:0 auto; background:var(--coral); color:#fff; font-family:'Jua'; font-size:26px;
+    padding:20px 50px; border-radius:26px; box-shadow:0 6px 0 var(--coral-dark);
+  }
+  .hit-btn:active{transform:translateY(5px); box-shadow:none;}
+
+  /* ---------- Game 15: simon sequence ---------- */
+  .simon-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:420px; margin:0 auto;}
+  .simon-pad{
+    aspect-ratio:1; border-radius:24px; border:4px solid rgba(0,0,0,0.15); font-size:44px;
+    display:flex; align-items:center; justify-content:center; opacity:0.85; transition:transform .1s, opacity .15s;
+  }
+  .simon-pad.lit{opacity:1; transform:scale(1.06); box-shadow:0 0 0 6px rgba(255,255,255,0.6) inset;}
   .story-panel{
     background:var(--card); border-radius:32px; padding:40px; max-width:720px; margin:0 auto;
     box-shadow:0 12px 0 #DDE4E9;
@@ -597,6 +655,31 @@
       <h2>낱말 돌림판</h2>
       <p>멈춰서 정답 낱말 맞히기</p>
     </button>
+    <button class="card" onclick="goTo('game11')">
+      <span class="icon">⚡</span>
+      <h2>번개 스피드 퀴즈</h2>
+      <p>시간 안에 최대한 많이!</p>
+    </button>
+    <button class="card" onclick="goTo('game12')">
+      <span class="icon">🧱</span>
+      <h2>블록 탑 쌓기</h2>
+      <p>정답 맞히고 탑 쌓기</p>
+    </button>
+    <button class="card" onclick="goTo('game13')">
+      <span class="icon">🎁</span>
+      <h2>보물 상자 찾기</h2>
+      <p>정답 상자를 열어보세요</p>
+    </button>
+    <button class="card" onclick="goTo('game14')">
+      <span class="icon">🎵</span>
+      <h2>낱말 리듬 게임</h2>
+      <p>타이밍 맞춰 콕!</p>
+    </button>
+    <button class="card" onclick="goTo('game15')">
+      <span class="icon">🧠</span>
+      <h2>순서 기억 게임</h2>
+      <p>순서를 기억해서 따라 눌러요</p>
+    </button>
   </div>
 </div>
 
@@ -791,6 +874,101 @@
     <button class="nav-btn" id="g10-stop-btn" onclick="stopG10Wheel()">🛑 멈춰!</button>
   </div>
   <div class="feedback" id="g10-feedback"></div>
+</div>
+
+<!-- ============ GAME 11: 번개 스피드 퀴즈 ============ -->
+<div class="screen" id="screen-game11">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>⚡ 번개 스피드 퀴즈</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div id="g11-wrap" style="position:relative;">
+    <div class="game-hud">
+      <span class="score" id="g11-score">⭐ 0점</span>
+      <span id="g11-time">⏱ 60초</span>
+    </div>
+    <div class="timer-bar-wrap"><div class="timer-bar" id="g11-timerbar"></div></div>
+    <div class="display-panel">
+      <div class="sub-label">소리를 듣고 알맞은 낱말을 빠르게 찾아보세요!</div>
+      <button class="speak-btn" onclick="speakG11Target()">🔊 소리 듣기</button>
+    </div>
+    <div class="quiz-options words" id="g11-options" style="margin-top:18px;"></div>
+  </div>
+</div>
+
+<!-- ============ GAME 12: 블록 탑 쌓기 ============ -->
+<div class="screen" id="screen-game12">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🧱 블록 탑 쌓기</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div id="g12-wrap" style="position:relative;">
+    <div class="game-hud">
+      <span class="score" id="g12-score">🧱 0/8</span>
+    </div>
+    <div class="display-panel" style="max-width:500px;">
+      <div class="sub-label">정답을 맞히면 블록이 쌓여요!</div>
+      <button class="speak-btn" onclick="speakG12Target()">🔊 소리 듣기</button>
+    </div>
+    <div class="quiz-options words" id="g12-options" style="margin:16px auto 20px; max-width:500px;"></div>
+    <div class="tower-area" id="g12-tower"></div>
+  </div>
+</div>
+
+<!-- ============ GAME 13: 보물 상자 찾기 ============ -->
+<div class="screen" id="screen-game13">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🎁 보물 상자 찾기</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div class="game-hud">
+    <span class="score" id="g13-score">⭐ 0개</span>
+  </div>
+  <div class="game-target">
+    이 낱말이 든 상자를 열어보세요: <span class="word" id="g13-target">-</span>
+    <button class="speak-btn" style="padding:8px 20px; font-size:16px; margin-left:10px;" onclick="speakG13Target()">🔊</button>
+  </div>
+  <div class="box-grid" id="g13-grid"></div>
+</div>
+
+<!-- ============ GAME 14: 낱말 리듬 게임 ============ -->
+<div class="screen" id="screen-game14">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🎵 낱말 리듬 게임</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div class="game-hud">
+    <span class="lives" id="g14-lives">❤️❤️❤️</span>
+    <span class="score" id="g14-score">⭐ 0점</span>
+  </div>
+  <div class="game-target">
+    이 낱말이 초록 칸에 들어오면 버튼을 눌러요: <span class="word" id="g14-target">-</span>
+    <button class="speak-btn" style="padding:8px 20px; font-size:16px; margin-left:10px;" onclick="speakG14Target()">🔊</button>
+  </div>
+  <div class="rhythm-track" id="g14-track">
+    <div class="rhythm-zone"></div>
+  </div>
+  <button class="hit-btn" onclick="hitG14()">지금이야!</button>
+</div>
+
+<!-- ============ GAME 15: 순서 기억 게임 ============ -->
+<div class="screen" id="screen-game15">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🧠 순서 기억 게임</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div class="game-hud">
+    <span class="score" id="g15-score">⭐ 단계 1</span>
+  </div>
+  <div id="g15-wrap" style="position:relative;">
+    <p style="text-align:center; color:var(--text-soft);" id="g15-status">잘 보고 들으세요...</p>
+    <div class="simon-grid" id="g15-grid"></div>
+  </div>
 </div>
 
 <script>
@@ -1015,9 +1193,38 @@ const stories = [
 
 const wordsList = [
   {word:'나무', emoji:'🌳'}, {word:'학교', emoji:'🏫'}, {word:'친구', emoji:'👫'},
-  {word:'엄마', emoji:'👩'}, {word:'아빠', emoji:'👨'}, {word:'사과', emoji:'🍎'},
-  {word:'우산', emoji:'☂️'}, {word:'나비', emoji:'🦋'}, {word:'구름', emoji:'☁️'},
-  {word:'바다', emoji:'🌊'}, {word:'하늘', emoji:'🌤️'}, {word:'토끼', emoji:'🐰'},
+  {word:'엄마', emoji:'👩'}, {word:'아빠', emoji:'👨'}, {word:'할머니', emoji:'👵'},
+  {word:'할아버지', emoji:'👴'}, {word:'아기', emoji:'👶'},
+  {word:'사과', emoji:'🍎'}, {word:'우산', emoji:'☂️'}, {word:'나비', emoji:'🦋'},
+  {word:'구름', emoji:'☁️'}, {word:'바다', emoji:'🌊'}, {word:'하늘', emoji:'🌤️'},
+  {word:'토끼', emoji:'🐰'}, {word:'사자', emoji:'🦁'}, {word:'호랑이', emoji:'🐯'},
+  {word:'코끼리', emoji:'🐘'}, {word:'기린', emoji:'🦒'}, {word:'곰', emoji:'🐻'},
+  {word:'여우', emoji:'🦊'}, {word:'판다', emoji:'🐼'}, {word:'원숭이', emoji:'🐵'},
+  {word:'다람쥐', emoji:'🐿️'}, {word:'거북이', emoji:'🐢'}, {word:'펭귄', emoji:'🐧'},
+  {word:'부엉이', emoji:'🦉'}, {word:'사슴', emoji:'🦌'}, {word:'악어', emoji:'🐊'},
+  {word:'상어', emoji:'🦈'}, {word:'문어', emoji:'🐙'}, {word:'게', emoji:'🦀'},
+  {word:'벌', emoji:'🐝'}, {word:'뱀', emoji:'🐍'}, {word:'거미', emoji:'🕷️'},
+  {word:'달팽이', emoji:'🐌'}, {word:'병아리', emoji:'🐤'}, {word:'고래', emoji:'🐳'},
+  {word:'오리', emoji:'🦆'}, {word:'돼지', emoji:'🐷'}, {word:'소', emoji:'🐮'},
+  {word:'말', emoji:'🐴'}, {word:'양', emoji:'🐑'}, {word:'염소', emoji:'🐐'},
+  {word:'낙타', emoji:'🐫'},
+  {word:'딸기', emoji:'🍓'}, {word:'포도', emoji:'🍇'}, {word:'수박', emoji:'🍉'},
+  {word:'복숭아', emoji:'🍑'}, {word:'파인애플', emoji:'🍍'}, {word:'레몬', emoji:'🍋'},
+  {word:'오렌지', emoji:'🍊'}, {word:'체리', emoji:'🍒'}, {word:'옥수수', emoji:'🌽'},
+  {word:'당근', emoji:'🥕'}, {word:'감자', emoji:'🥔'}, {word:'고구마', emoji:'🍠'},
+  {word:'빵', emoji:'🍞'}, {word:'케이크', emoji:'🎂'}, {word:'피자', emoji:'🍕'},
+  {word:'햄버거', emoji:'🍔'}, {word:'아이스크림', emoji:'🍦'}, {word:'초콜릿', emoji:'🍫'},
+  {word:'우유', emoji:'🥛'}, {word:'계란', emoji:'🥚'}, {word:'국수', emoji:'🍜'},
+  {word:'도넛', emoji:'🍩'}, {word:'쿠키', emoji:'🍪'},
+  {word:'별', emoji:'⭐'}, {word:'달', emoji:'🌙'}, {word:'해님', emoji:'🌞'},
+  {word:'무지개', emoji:'🌈'}, {word:'눈사람', emoji:'⛄'}, {word:'바람', emoji:'💨'},
+  {word:'꽃', emoji:'🌸'}, {word:'낙엽', emoji:'🍂'},
+  {word:'기차', emoji:'🚂'}, {word:'버스', emoji:'🚌'}, {word:'배', emoji:'🚢'},
+  {word:'비행기', emoji:'✈️'}, {word:'자전거', emoji:'🚲'}, {word:'로켓', emoji:'🚀'},
+  {word:'연필', emoji:'✏️'}, {word:'가방', emoji:'🎒'}, {word:'시계', emoji:'⏰'},
+  {word:'안경', emoji:'👓'}, {word:'모자', emoji:'🧢'}, {word:'신발', emoji:'👟'},
+  {word:'풍선', emoji:'🎈'}, {word:'선물', emoji:'🎁'}, {word:'피아노', emoji:'🎹'},
+  {word:'기타', emoji:'🎸'},
 ];
 const dictationWords = [
   {word:'강아지', emoji:'🐶'}, {word:'고양이', emoji:'🐱'}, {word:'바나나', emoji:'🍌'},
@@ -1120,6 +1327,11 @@ function goTo(name){
   if(name==='game8'){ startGame8(); }
   if(name==='game9'){ startGame9(); }
   if(name==='game10'){ startGame10(); }
+  if(name==='game11'){ startGame11(); }
+  if(name==='game12'){ startGame12(); }
+  if(name==='game13'){ startGame13(); }
+  if(name==='game14'){ startGame14(); }
+  if(name==='game15'){ startGame15(); }
   window.scrollTo({top:0, behavior:'smooth'});
 }
 function addStar(section){
@@ -1520,12 +1732,15 @@ function stopAllGames(){
   activeGameTimers = [];
   g1Active = g2Active = g3Active = g4Active = g5Active = g6Active = false;
   g7Active = g8Active = g9Active = g10Active = false;
+  g11Active = g12Active = g13Active = g14Active = g15Active = false;
   if(g5RafId) cancelAnimationFrame(g5RafId);
   g5RafId = null;
   if(g9RafId) cancelAnimationFrame(g9RafId);
   g9RafId = null;
   if(g10RafId) cancelAnimationFrame(g10RafId);
   g10RafId = null;
+  if(g14RafId) cancelAnimationFrame(g14RafId);
+  g14RafId = null;
 }
 function updateLivesHUD(gameKey, lives){
   document.getElementById(gameKey+'-lives').textContent = '❤️'.repeat(Math.max(lives,0)) + '🖤'.repeat(Math.max(3-lives,0));
@@ -2251,6 +2466,303 @@ function stopG10Wheel(){
     g10Spinning = true;
     g10RafId = requestAnimationFrame(g10Loop);
   }, 1600, false);
+}
+
+/* ---- Game 11: 번개 스피드 퀴즈 ---- */
+let g11Active=false, g11Score=0, g11TimeLeft=60, g11Answer=null;
+function startGame11(){
+  stopAllGames();
+  g11Active = true; g11Score=0; g11TimeLeft=60;
+  document.getElementById('g11-score').textContent = '⭐ 0점';
+  document.getElementById('g11-time').textContent = '⏱ 60초';
+  document.getElementById('g11-timerbar').style.width='100%';
+  const oldBanner = document.querySelector('#screen-game11 .game-over-banner');
+  if(oldBanner) oldBanner.remove();
+  document.getElementById('g11-options').style.display='';
+  newG11Round();
+  gameTimer(g11Tick, 1000, true);
+}
+function g11Tick(){
+  if(!g11Active) return;
+  g11TimeLeft--;
+  document.getElementById('g11-time').textContent = '⏱ ' + g11TimeLeft + '초';
+  document.getElementById('g11-timerbar').style.width = (g11TimeLeft/60*100) + '%';
+  if(g11TimeLeft<=0) endGame11();
+}
+function newG11Round(){
+  const correctIdx = Math.floor(Math.random()*wordsList.length);
+  g11Answer = correctIdx;
+  let options=[correctIdx];
+  while(options.length<3){
+    const r = Math.floor(Math.random()*wordsList.length);
+    if(!options.includes(r)) options.push(r);
+  }
+  options.sort(()=>Math.random()-0.5);
+  const wrap = document.getElementById('g11-options');
+  wrap.innerHTML='';
+  options.forEach(i=>{
+    const b = document.createElement('button');
+    b.className='opt-btn word-opt';
+    b.textContent = wordsList[i].emoji + '  ' + wordsList[i].word;
+    b.onclick = ()=>{
+      if(!g11Active) return;
+      if(i===g11Answer){ g11Score++; document.getElementById('g11-score').textContent='⭐ '+g11Score+'점'; addStar('game'); }
+      newG11Round();
+    };
+    wrap.appendChild(b);
+  });
+  speakG11Target();
+}
+function speakG11Target(){ if(g11Answer!==null) speak(wordsList[g11Answer].word); }
+function endGame11(){
+  g11Active = false;
+  stopAllGames();
+  document.getElementById('g11-options').style.display='none';
+  showGameOverBanner(document.getElementById('g11-wrap'), g11Score, startGame11);
+}
+
+/* ---- Game 12: 블록 탑 쌓기 ---- */
+let g12Active=false, g12Score=0, g12Answer=null, g12Goal=8;
+const TOWER_COLORS = ['#FF6F61','#FFC93C','#4CAF87','#8C7AE6','#5CB8E4','#F48FB1'];
+function startGame12(){
+  stopAllGames();
+  g12Active = true; g12Score=0;
+  document.getElementById('g12-score').textContent = '🧱 0/' + g12Goal;
+  document.getElementById('g12-tower').innerHTML='';
+  document.getElementById('g12-options').style.display='';
+  const oldBanner = document.querySelector('#screen-game12 .game-over-banner');
+  if(oldBanner) oldBanner.remove();
+  newG12Round();
+}
+function newG12Round(){
+  const correctIdx = Math.floor(Math.random()*wordsList.length);
+  g12Answer = correctIdx;
+  let options=[correctIdx];
+  while(options.length<3){
+    const r = Math.floor(Math.random()*wordsList.length);
+    if(!options.includes(r)) options.push(r);
+  }
+  options.sort(()=>Math.random()-0.5);
+  const wrap = document.getElementById('g12-options');
+  wrap.innerHTML='';
+  options.forEach(i=>{
+    const b = document.createElement('button');
+    b.className='opt-btn word-opt';
+    b.textContent = wordsList[i].emoji + '  ' + wordsList[i].word;
+    b.onclick = ()=> checkG12(i, b);
+    wrap.appendChild(b);
+  });
+  speakG12Target();
+}
+function speakG12Target(){ if(g12Answer!==null) speak(wordsList[g12Answer].word); }
+function checkG12(i, btn){
+  if(!g12Active) return;
+  if(i===g12Answer){
+    g12Score++;
+    document.getElementById('g12-score').textContent = '🧱 ' + g12Score + '/' + g12Goal;
+    addStar('game');
+    const block = document.createElement('div');
+    block.className='tower-block';
+    block.style.background = TOWER_COLORS[(g12Score-1) % TOWER_COLORS.length];
+    block.textContent = wordsList[g12Answer].word;
+    document.getElementById('g12-tower').appendChild(block);
+    if(g12Score >= g12Goal){
+      g12Active = false;
+      document.getElementById('g12-options').style.display='none';
+      gameTimer(()=> showGameOverBanner(document.getElementById('g12-wrap'), g12Score, startGame12), 400, false);
+      return;
+    }
+    newG12Round();
+  } else {
+    btn.classList.add('shake');
+    gameTimer(()=> btn.classList.remove('shake'), 400, false);
+  }
+}
+
+/* ---- Game 13: 보물 상자 찾기 ---- */
+let g13Active=false, g13Score=0, g13Target=null, g13BoxCount=6;
+function startGame13(){
+  stopAllGames();
+  g13Active = true; g13Score=0;
+  document.getElementById('g13-score').textContent = '⭐ 0개';
+  newG13Round();
+}
+function newG13Round(){
+  const picks = [...wordsList].sort(()=>Math.random()-0.5).slice(0, g13BoxCount);
+  g13Target = picks[Math.floor(Math.random()*picks.length)];
+  document.getElementById('g13-target').textContent = g13Target.emoji + ' ' + g13Target.word;
+  speakG13Target();
+  const grid = document.getElementById('g13-grid');
+  grid.innerHTML='';
+  picks.forEach((w)=>{
+    const box = document.createElement('button');
+    box.className='treasure-box';
+    box.textContent='🎁';
+    box.onclick = ()=>{
+      if(!g13Active || box.classList.contains('opened')) return;
+      box.classList.add('opened');
+      const isRight = w.word === g13Target.word;
+      if(isRight) box.classList.add('right');
+      box.innerHTML = `<span>${w.emoji}</span><span>${w.word}</span>`;
+      if(isRight){
+        g13Score++;
+        document.getElementById('g13-score').textContent = '⭐ ' + g13Score + '개';
+        addStar('game');
+        gameTimer(newG13Round, 900, false);
+      }
+    };
+    grid.appendChild(box);
+  });
+}
+function speakG13Target(){ if(g13Target) speak(g13Target.word); }
+
+/* ---- Game 14: 낱말 리듬 게임 ---- */
+let g14Active=false, g14Score=0, g14Lives=3, g14Target=null, g14Tiles=[], g14RafId=null, g14LastTime=0, g14SpawnAcc=0;
+function startGame14(){
+  stopAllGames();
+  g14Active = true; g14Score=0; g14Lives=3; g14Tiles=[]; g14SpawnAcc=0;
+  updateLivesHUD('g14', g14Lives);
+  updateScoreHUD('g14', g14Score);
+  const track = document.getElementById('g14-track');
+  track.querySelectorAll('.rhythm-tile, .game-over-banner').forEach(el=>el.remove());
+  pickG14Target();
+  g14LastTime = performance.now();
+  g14RafId = requestAnimationFrame(g14Loop);
+}
+function pickG14Target(){
+  g14Target = wordsList[Math.floor(Math.random()*wordsList.length)];
+  document.getElementById('g14-target').textContent = g14Target.emoji + ' ' + g14Target.word;
+  speakG14Target();
+}
+function speakG14Target(){ if(g14Target) speak(g14Target.word); }
+function g14Loop(now){
+  if(!g14Active) return;
+  const dt = now-g14LastTime; g14LastTime = now;
+  const track = document.getElementById('g14-track');
+  const trackW = track.clientWidth;
+
+  g14SpawnAcc += dt;
+  if(g14SpawnAcc > 1500){
+    g14SpawnAcc = 0;
+    const item = wordsList[Math.floor(Math.random()*wordsList.length)];
+    const el = document.createElement('div');
+    el.className='rhythm-tile';
+    el.textContent = item.emoji + ' ' + item.word;
+    el.style.left = trackW+'px';
+    track.appendChild(el);
+    g14Tiles.push({el, x:trackW, speed:0.16, isTarget:item.word===g14Target.word, judged:false});
+  }
+  const zoneStart = trackW - 150, zoneEnd = trackW - 40;
+  for(let i=g14Tiles.length-1;i>=0;i--){
+    const t = g14Tiles[i];
+    t.x -= t.speed*dt;
+    t.el.style.left = t.x+'px';
+    if(t.x < -140 && t.isTarget && !t.judged){
+      t.judged = true;
+      g14Lives--; updateLivesHUD('g14', g14Lives);
+      t.el.remove(); g14Tiles.splice(i,1);
+      if(g14Lives<=0){ endGame14(); return; }
+      continue;
+    }
+    if(t.x < -140){ t.el.remove(); g14Tiles.splice(i,1); }
+  }
+  g14RafId = requestAnimationFrame(g14Loop);
+}
+function hitG14(){
+  if(!g14Active) return;
+  const track = document.getElementById('g14-track');
+  const trackW = track.clientWidth;
+  const zoneStart = trackW - 150, zoneEnd = trackW - 40;
+  let hit = null;
+  g14Tiles.forEach(t=>{
+    if(!t.judged && t.x >= zoneStart && t.x <= zoneEnd) hit = t;
+  });
+  if(hit){
+    hit.judged = true;
+    hit.el.remove();
+    g14Tiles = g14Tiles.filter(t=>t!==hit);
+    if(hit.isTarget){
+      g14Score++; updateScoreHUD('g14', g14Score); addStar('game'); pickG14Target();
+    } else {
+      g14Lives--; updateLivesHUD('g14', g14Lives);
+      if(g14Lives<=0) endGame14();
+    }
+  }
+}
+function endGame14(){
+  g14Active = false;
+  if(g14RafId) cancelAnimationFrame(g14RafId);
+  document.getElementById('g14-track').querySelectorAll('.rhythm-tile').forEach(el=>el.remove());
+  showGameOverBanner(document.getElementById('g14-track'), g14Score, startGame14);
+}
+
+/* ---- Game 15: 순서 기억 게임 ---- */
+let g15Active=false, g15Sequence=[], g15PlayerIndex=0, g15Phase='idle', g15Pool=[];
+const SIMON_COLORS = ['#FF6F61','#FFC93C','#4CAF87','#8C7AE6'];
+function startGame15(){
+  stopAllGames();
+  g15Active = true; g15Sequence=[]; g15PlayerIndex=0;
+  document.getElementById('g15-score').textContent = '⭐ 단계 1';
+  document.getElementById('g15-status').textContent = '잘 보고 들으세요...';
+  const oldBanner = document.querySelector('#screen-game15 .game-over-banner');
+  if(oldBanner) oldBanner.remove();
+  g15Pool = [...wordsList].sort(()=>Math.random()-0.5).slice(0,4);
+  const grid = document.getElementById('g15-grid');
+  grid.innerHTML='';
+  g15Pool.forEach((w, i)=>{
+    const pad = document.createElement('button');
+    pad.className='simon-pad';
+    pad.style.background = SIMON_COLORS[i];
+    pad.textContent = w.emoji;
+    pad.dataset.idx = i;
+    pad.onclick = ()=> pressG15Pad(i, pad);
+    grid.appendChild(pad);
+  });
+  g15Sequence.push(Math.floor(Math.random()*g15Pool.length));
+  gameTimer(playG15Sequence, 700, false);
+}
+function playG15Sequence(){
+  g15Phase = 'showing';
+  document.getElementById('g15-status').textContent = '잘 보고 들으세요...';
+  const pads = document.querySelectorAll('#g15-grid .simon-pad');
+  g15Sequence.forEach((padIdx, step)=>{
+    gameTimer(()=>{
+      if(!g15Active) return;
+      const pad = pads[padIdx];
+      pad.classList.add('lit');
+      speak(g15Pool[padIdx].word);
+      gameTimer(()=> pad.classList.remove('lit'), 500, false);
+    }, step*800, false);
+  });
+  gameTimer(()=>{
+    if(!g15Active) return;
+    g15Phase = 'input';
+    g15PlayerIndex = 0;
+    document.getElementById('g15-status').textContent = '이제 순서대로 눌러보세요!';
+  }, g15Sequence.length*800 + 200, false);
+}
+function pressG15Pad(idx, padEl){
+  if(!g15Active || g15Phase!=='input') return;
+  padEl.classList.add('lit');
+  gameTimer(()=> padEl.classList.remove('lit'), 250, false);
+  if(idx === g15Sequence[g15PlayerIndex]){
+    g15PlayerIndex++;
+    if(g15PlayerIndex >= g15Sequence.length){
+      document.getElementById('g15-score').textContent = '⭐ 단계 ' + (g15Sequence.length+1);
+      addStar('game');
+      g15Phase = 'idle';
+      document.getElementById('g15-status').textContent = '정답! 다음 단계 준비...';
+      g15Sequence.push(Math.floor(Math.random()*g15Pool.length));
+      gameTimer(playG15Sequence, 1000, false);
+    }
+  } else {
+    endGame15();
+  }
+}
+function endGame15(){
+  g15Active = false;
+  document.getElementById('g15-status').textContent = '아쉬워요!';
+  showGameOverBanner(document.getElementById('g15-wrap'), g15Sequence.length, startGame15);
 }
 
 /* init */
