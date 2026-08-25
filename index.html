@@ -1754,6 +1754,8 @@ function startGame4(){
   stopAllGames();
   g4Active = true; g4Score=0; g4First=null; g4Second=null; g4Lock=false; g4MatchedCount=0;
   updateScoreHUD4();
+  const oldBanner = document.querySelector('#screen-game4 .game-over-banner');
+  if(oldBanner) oldBanner.remove();
   const shuffledWords = [...wordsList].sort(()=>Math.random()-0.5).slice(0, g4TotalPairs);
   let cards = [];
   shuffledWords.forEach((w, i)=>{
