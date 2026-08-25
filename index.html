@@ -405,6 +405,113 @@
     display:flex; align-items:center; justify-content:center; opacity:0.85; transition:transform .1s, opacity .15s;
   }
   .simon-pad.lit{opacity:1; transform:scale(1.06); box-shadow:0 0 0 6px rgba(255,255,255,0.6) inset;}
+
+  /* ---------- Game 16: conveyor catch ---------- */
+  .conveyor-track{
+    position:relative; height:130px; max-width:740px; margin:0 auto; background:linear-gradient(#FFF3DE,#FFE8C2);
+    border-radius:20px; border:4px solid #E8CFA0; overflow:hidden;
+  }
+  .conveyor-track::after{
+    content:''; position:absolute; left:0; right:0; bottom:8px; height:14px;
+    background:repeating-linear-gradient(90deg, #C9A876 0 20px, #B8925E 20px 24px);
+  }
+  .conveyor-item{
+    position:absolute; bottom:26px; background:#fff; border:3px solid #DDE4E9; border-radius:16px;
+    padding:8px 14px; font-family:'Jua'; font-size:20px; box-shadow:0 4px 0 #DDE4E9;
+    transition-property: left; transition-timing-function: linear;
+  }
+
+  /* ---------- Game 17: submarine dive ---------- */
+  .sub-area{
+    position:relative; width:100%; max-width:760px; height:460px; margin:0 auto;
+    background:linear-gradient(#4FA8D8, #103A5C); border-radius:28px; overflow:hidden;
+    border:4px solid #0E2E4A; box-shadow:0 8px 0 #0E2E4A; transition:background 1s;
+  }
+  .pearl-bubble{
+    position:absolute; bottom:-70px; background:rgba(255,255,255,0.92); border:3px solid #fff; border-radius:50%;
+    width:88px; height:88px; display:flex; align-items:center; justify-content:center; flex-direction:column;
+    font-family:'Jua'; font-size:13px; box-shadow:0 4px 0 rgba(0,0,0,0.15);
+    transition-property: bottom; transition-timing-function: linear;
+  }
+  .sub-ship{position:absolute; left:20px; bottom:20px; font-size:44px;}
+
+  /* ---------- Game 18: target ring ---------- */
+  .ring-wrap{width:280px; height:280px; margin:14px auto; position:relative; display:flex; align-items:center; justify-content:center;}
+  .ring{
+    width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, #fff 0%, #fff 40%, var(--coral) 41%, var(--coral) 55%, #fff 56%, #fff 70%, var(--yellow) 71%, var(--yellow) 100%);
+    display:flex; align-items:center; justify-content:center; font-family:'Jua'; font-size:22px; color:var(--text);
+    animation: ringPulse 1.6s ease-in-out infinite;
+    box-shadow:0 8px 0 #DDE4E9;
+  }
+  @keyframes ringPulse{ 0%,100%{transform:scale(0.78);} 50%{transform:scale(1.05);} }
+  .shoot-btn{
+    display:block; margin:16px auto 0; background:var(--purple); color:#fff; font-family:'Jua'; font-size:24px;
+    padding:16px 44px; border-radius:24px; box-shadow:0 6px 0 var(--purple-dark);
+  }
+  .shoot-btn:active{transform:translateY(5px); box-shadow:none;}
+
+  /* ---------- Game 19: firework ---------- */
+  .gauge-wrap{width:70px; height:280px; margin:10px auto; border:4px solid #DDE4E9; border-radius:20px; overflow:hidden; position:relative; background:#F5F9FC;}
+  .gauge-fill{position:absolute; left:0; right:0; bottom:0; height:0%; background:linear-gradient(#FFC93C,var(--coral));}
+  .gauge-sweet{position:absolute; left:0; right:0; top:0; height:22%; background:rgba(76,175,135,0.35); border-bottom:3px dashed var(--green-dark);}
+  .fw-sky{position:relative; height:220px; max-width:600px; margin:0 auto; background:linear-gradient(#0B1A3A,#1E3A6B); border-radius:20px; overflow:hidden;}
+  .fw-burst{position:absolute; font-size:40px; animation: fwPop .8s ease-out forwards;}
+  @keyframes fwPop{ 0%{transform:scale(0.2); opacity:1;} 80%{transform:scale(1.4); opacity:1;} 100%{transform:scale(1.6); opacity:0;} }
+
+  /* ---------- Game 20: soccer shot ---------- */
+  .goal-wrap{position:relative; max-width:620px; height:220px; margin:0 auto; background:linear-gradient(#EAF6E4,#CDEBBE); border-radius:20px; border:4px solid #B7DDA0; overflow:hidden;}
+  .goal-post{position:absolute; top:10px; bottom:40px; width:46%; border:5px solid #fff; border-radius:10px; display:flex; align-items:flex-end; justify-content:center; font-family:'Jua'; font-size:18px; color:#2D6A2D; padding-bottom:6px;}
+  .goal-post.left{left:2%;}
+  .goal-post.right{right:2%;}
+  .keeper{position:absolute; bottom:34px; font-size:44px; transition:left .45s ease-in-out;}
+  .ball-icon{position:absolute; bottom:6px; left:50%; transform:translateX(-50%); font-size:34px;}
+
+  /* ---------- Game 21/22: growth quiz (snowball/snowman) ---------- */
+  .hill-area{position:relative; height:200px; max-width:600px; margin:0 auto; background:linear-gradient(#DCEEFF,#F0F7FF); border-radius:20px; border:4px solid #CFE3F5; overflow:hidden;}
+  .snowball{position:absolute; bottom:16px; left:10px; font-size:30px; transition:left .5s, font-size .4s;}
+  .snowman-stage{display:flex; flex-direction:column-reverse; align-items:center; gap:2px;}
+  .snowman-stage span{transition:opacity .3s, transform .3s;}
+
+  /* ---------- Game 23: ball toss ---------- */
+  .hoop-row{display:flex; justify-content:center; gap:22px; margin-bottom:30px; flex-wrap:wrap;}
+  .hoop{
+    width:100px; height:100px; border-radius:20px; border:4px dashed #B9C4CC; background:#F5F9FC;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Jua'; font-size:14px; gap:4px;
+  }
+  .toss-ball{
+    width:70px; height:70px; border-radius:50%; background:var(--coral); border:4px solid var(--coral-dark);
+    display:flex; align-items:center; justify-content:center; font-size:32px; margin:0 auto; touch-action:none; cursor:grab;
+    position:relative;
+  }
+  .toss-ball.dragging{position:fixed; z-index:60; cursor:grabbing;}
+
+  /* ---------- Game 24: stepping stones ---------- */
+  .stones-row{display:flex; justify-content:center; align-items:flex-end; gap:14px; max-width:700px; margin:20px auto; min-height:100px;}
+  .stone{
+    width:70px; height:70px; border-radius:50%; background:#B9C4CC; border:4px solid #96A3AE; display:flex;
+    align-items:center; justify-content:center; font-size:26px; position:relative; opacity:0.85; transition:opacity .15s, transform .15s;
+  }
+  .stone.lit{opacity:1; transform:scale(1.12); background:var(--green); border-color:var(--green-dark);}
+  .stone .hopper{position:absolute; top:-38px; font-size:32px; transition:left .3s;}
+
+  /* ---------- Game 25: spaceship dodge ---------- */
+  .ship-area{
+    position:relative; width:100%; max-width:760px; height:420px; margin:0 auto 14px;
+    background:radial-gradient(circle at 20% 20%, #1c2b52, #060a1a); border-radius:28px; overflow:hidden;
+    border:4px solid #2A3B66; box-shadow:0 8px 0 #2A3B66;
+  }
+  .ship-icon{position:absolute; bottom:16px; font-size:42px; transition:left .05s linear;}
+  .meteor-item{position:absolute; font-size:34px;}
+  .starword-item{
+    position:absolute; background:rgba(255,255,255,0.95); border:3px solid var(--yellow-dark); border-radius:14px;
+    padding:6px 10px; font-family:'Jua'; font-size:14px; text-align:center;
+  }
+  .hold-btn-row{display:flex; justify-content:center; gap:60px;}
+  .hold-btn{
+    width:90px; height:90px; border-radius:50%; background:var(--purple); color:#fff; font-size:34px;
+    box-shadow:0 6px 0 var(--purple-dark); user-select:none; touch-action:none;
+  }
+  .hold-btn:active{transform:translateY(5px); box-shadow:none;}
   .story-panel{
     background:var(--card); border-radius:32px; padding:40px; max-width:720px; margin:0 auto;
     box-shadow:0 12px 0 #DDE4E9;
@@ -679,6 +786,56 @@
       <span class="icon">🧠</span>
       <h2>순서 기억 게임</h2>
       <p>순서를 기억해서 따라 눌러요</p>
+    </button>
+    <button class="card" onclick="goTo('game16')">
+      <span class="icon">🧁</span>
+      <h2>컵케이크 공장</h2>
+      <p>컨베이어 벨트에서 낚아채기</p>
+    </button>
+    <button class="card" onclick="goTo('game17')">
+      <span class="icon">🤿</span>
+      <h2>잠수함 탐험</h2>
+      <p>진주 방울을 찾아 클릭!</p>
+    </button>
+    <button class="card" onclick="goTo('game18')">
+      <span class="icon">🎯</span>
+      <h2>표적 맞추기</h2>
+      <p>커질 때 딱 맞춰 쏘기</p>
+    </button>
+    <button class="card" onclick="goTo('game19')">
+      <span class="icon">🎆</span>
+      <h2>폭죽놀이</h2>
+      <p>게이지 맞춰 발사!</p>
+    </button>
+    <button class="card" onclick="goTo('game20')">
+      <span class="icon">⚽</span>
+      <h2>축구 슛 게임</h2>
+      <p>골키퍼를 피해 슛!</p>
+    </button>
+    <button class="card" onclick="goTo('game21')">
+      <span class="icon">⛄</span>
+      <h2>눈덩이 굴리기</h2>
+      <p>정답 맞히고 눈덩이 키우기</p>
+    </button>
+    <button class="card" onclick="goTo('game22')">
+      <span class="icon">☃️</span>
+      <h2>눈사람 만들기</h2>
+      <p>3단계로 눈사람 완성</p>
+    </button>
+    <button class="card" onclick="goTo('game23')">
+      <span class="icon">🏀</span>
+      <h2>공 던지기</h2>
+      <p>정답 골대에 던져 넣기</p>
+    </button>
+    <button class="card" onclick="goTo('game24')">
+      <span class="icon">🪨</span>
+      <h2>징검다리 건너기</h2>
+      <p>순서 기억해서 폴짝폴짝</p>
+    </button>
+    <button class="card" onclick="goTo('game25')">
+      <span class="icon">🛸</span>
+      <h2>우주선 대피</h2>
+      <p>버튼으로 조종해서 피하기</p>
     </button>
   </div>
 </div>
@@ -968,6 +1125,211 @@
   <div id="g15-wrap" style="position:relative;">
     <p style="text-align:center; color:var(--text-soft);" id="g15-status">잘 보고 들으세요...</p>
     <div class="simon-grid" id="g15-grid"></div>
+  </div>
+</div>
+
+<!-- ============ GAME 16: 컵케이크 공장 ============ -->
+<div class="screen" id="screen-game16">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🧁 컵케이크 공장</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div class="game-hud">
+    <span class="lives" id="g16-lives">❤️❤️❤️</span>
+    <span class="score" id="g16-score">⭐ 0점</span>
+  </div>
+  <div class="game-target">
+    이 컵케이크를 낚아채세요: <span class="word" id="g16-target">-</span>
+    <button class="speak-btn" style="padding:8px 20px; font-size:16px; margin-left:10px;" onclick="speakG16Target()">🔊</button>
+  </div>
+  <div class="conveyor-track" id="g16-track"></div>
+</div>
+
+<!-- ============ GAME 17: 잠수함 탐험 ============ -->
+<div class="screen" id="screen-game17">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🤿 잠수함 탐험</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div class="game-hud">
+    <span class="lives" id="g17-lives">❤️❤️❤️</span>
+    <span class="score" id="g17-score">⭐ 0점</span>
+  </div>
+  <div class="game-target">
+    이 진주 방울을 찾아보세요: <span class="word" id="g17-target">-</span>
+    <button class="speak-btn" style="padding:8px 20px; font-size:16px; margin-left:10px;" onclick="speakG17Target()">🔊</button>
+  </div>
+  <div class="sub-area" id="g17-area"><div class="sub-ship">🤿</div></div>
+</div>
+
+<!-- ============ GAME 18: 표적 맞추기 ============ -->
+<div class="screen" id="screen-game18">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🎯 표적 맞추기</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div id="g18-wrap" style="position:relative;">
+    <div class="game-hud">
+      <span class="score" id="g18-score">⭐ 0점</span>
+    </div>
+    <div class="game-target">
+      과녁이 커질 때 쏘아보세요: <span class="word" id="g18-target">-</span>
+      <button class="speak-btn" style="padding:8px 20px; font-size:16px; margin-left:10px;" onclick="speakG18Target()">🔊</button>
+    </div>
+    <div class="ring-wrap"><div class="ring" id="g18-ring">-</div></div>
+    <button class="shoot-btn" onclick="shootG18()">🏹 쏘기!</button>
+    <div class="feedback" id="g18-feedback"></div>
+  </div>
+</div>
+
+<!-- ============ GAME 19: 폭죽놀이 ============ -->
+<div class="screen" id="screen-game19">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🎆 폭죽놀이</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div id="g19-wrap" style="position:relative;">
+    <div class="game-hud">
+      <span class="score" id="g19-score">⭐ 0개</span>
+    </div>
+    <p style="text-align:center; color:var(--text-soft);">초록 구간에 게이지가 있을 때 발사 버튼을 누르세요!</p>
+    <div class="fw-sky" id="g19-sky"></div>
+    <div class="gauge-wrap"><div class="gauge-sweet"></div><div class="gauge-fill" id="g19-gauge"></div></div>
+    <button class="hit-btn" onclick="launchG19()">🚀 발사!</button>
+    <div class="feedback" id="g19-feedback"></div>
+  </div>
+</div>
+
+<!-- ============ GAME 20: 축구 슛 게임 ============ -->
+<div class="screen" id="screen-game20">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>⚽ 축구 슛 게임</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div id="g20-wrap" style="position:relative;">
+    <div class="game-hud">
+      <span class="score" id="g20-score">⭐ 0골</span>
+    </div>
+    <div class="game-target">
+      이 낱말 골대로 슛하세요: <span class="word" id="g20-target">-</span>
+      <button class="speak-btn" style="padding:8px 20px; font-size:16px; margin-left:10px;" onclick="speakG20Target()">🔊</button>
+    </div>
+    <div class="goal-wrap" id="g20-goalwrap">
+      <div class="goal-post left" id="g20-left"></div>
+      <div class="goal-post right" id="g20-right"></div>
+      <div class="keeper" id="g20-keeper">🧤</div>
+      <div class="ball-icon">⚽</div>
+    </div>
+    <div class="center-row">
+      <button class="nav-btn secondary" onclick="shootG20('left')">⬅️ 왼쪽 슛</button>
+      <button class="nav-btn" onclick="shootG20('right')">오른쪽 슛 ➡️</button>
+    </div>
+    <div class="feedback" id="g20-feedback"></div>
+  </div>
+</div>
+
+<!-- ============ GAME 21: 눈덩이 굴리기 ============ -->
+<div class="screen" id="screen-game21">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>⛄ 눈덩이 굴리기</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div id="g21-wrap" style="position:relative;">
+    <div class="game-hud">
+      <span class="score" id="g21-score">❄️ 0/8</span>
+    </div>
+    <div class="display-panel" style="max-width:500px;">
+      <div class="sub-label">정답을 맞히면 눈덩이가 굴러가요!</div>
+      <button class="speak-btn" onclick="speakG21Target()">🔊 소리 듣기</button>
+    </div>
+    <div class="quiz-options words" id="g21-options" style="margin:16px auto 20px; max-width:500px;"></div>
+    <div class="hill-area"><div class="snowball" id="g21-ball">⛄</div></div>
+  </div>
+</div>
+
+<!-- ============ GAME 22: 눈사람 만들기 ============ -->
+<div class="screen" id="screen-game22">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>☃️ 눈사람 만들기</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div id="g22-wrap" style="position:relative;">
+    <div class="game-hud">
+      <span class="score" id="g22-score">☃️ 0/3</span>
+    </div>
+    <div class="display-panel" style="max-width:500px;">
+      <div class="sub-label">정답을 맞히면 눈사람이 완성돼요!</div>
+      <button class="speak-btn" onclick="speakG22Target()">🔊 소리 듣기</button>
+    </div>
+    <div class="quiz-options words" id="g22-options" style="margin:16px auto 20px; max-width:500px;"></div>
+    <div class="snowman-stage" id="g22-stage" style="font-size:70px; min-height:220px; justify-content:flex-end;">
+      <span id="g22-s1" style="opacity:0.15;">⚪</span>
+      <span id="g22-s2" style="opacity:0.15;">⚪</span>
+      <span id="g22-s3" style="opacity:0.15;">☃️</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GAME 23: 공 던지기 ============ -->
+<div class="screen" id="screen-game23">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🏀 공 던지기</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div class="game-hud">
+    <span class="score" id="g23-score">⭐ 0점</span>
+  </div>
+  <div class="game-target">
+    이 골대에 공을 넣어보세요: <span class="word" id="g23-target">-</span>
+    <button class="speak-btn" style="padding:8px 20px; font-size:16px; margin-left:10px;" onclick="speakG23Target()">🔊</button>
+  </div>
+  <div class="hoop-row" id="g23-hoops"></div>
+  <div class="toss-ball" id="g23-ball">🏀</div>
+</div>
+
+<!-- ============ GAME 24: 징검다리 건너기 ============ -->
+<div class="screen" id="screen-game24">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🪨 징검다리 건너기</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div id="g24-wrap" style="position:relative;">
+    <div class="game-hud">
+      <span class="score" id="g24-score">⭐ 단계 1</span>
+    </div>
+    <p style="text-align:center; color:var(--text-soft);" id="g24-status">잘 보고 들으세요...</p>
+    <div class="stones-row" id="g24-row"></div>
+  </div>
+</div>
+
+<!-- ============ GAME 25: 우주선 대피 ============ -->
+<div class="screen" id="screen-game25">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('gamelist')">← 게임 목록</button>
+    <h2>🛸 우주선 대피</h2>
+    <div style="width:96px"></div>
+  </div>
+  <div class="game-hud">
+    <span class="lives" id="g25-lives">❤️❤️❤️</span>
+    <span class="score" id="g25-score">⭐ 0점</span>
+  </div>
+  <div class="game-target">
+    이 낱말 별을 모아보세요: <span class="word" id="g25-target">-</span>
+    <button class="speak-btn" style="padding:8px 20px; font-size:16px; margin-left:10px;" onclick="speakG25Target()">🔊</button>
+  </div>
+  <div class="ship-area" id="g25-area"><div class="ship-icon" id="g25-ship">🛸</div></div>
+  <div class="hold-btn-row">
+    <button class="hold-btn" id="g25-left">◀</button>
+    <button class="hold-btn" id="g25-right">▶</button>
   </div>
 </div>
 
@@ -1332,6 +1694,16 @@ function goTo(name){
   if(name==='game13'){ startGame13(); }
   if(name==='game14'){ startGame14(); }
   if(name==='game15'){ startGame15(); }
+  if(name==='game16'){ startGame16(); }
+  if(name==='game17'){ startGame17(); }
+  if(name==='game18'){ startGame18(); }
+  if(name==='game19'){ startGame19(); }
+  if(name==='game20'){ startGame20(); }
+  if(name==='game21'){ startGame21(); }
+  if(name==='game22'){ startGame22(); }
+  if(name==='game23'){ startGame23(); }
+  if(name==='game24'){ startGame24(); }
+  if(name==='game25'){ startGame25(); }
   window.scrollTo({top:0, behavior:'smooth'});
 }
 function addStar(section){
@@ -1733,6 +2105,8 @@ function stopAllGames(){
   g1Active = g2Active = g3Active = g4Active = g5Active = g6Active = false;
   g7Active = g8Active = g9Active = g10Active = false;
   g11Active = g12Active = g13Active = g14Active = g15Active = false;
+  g16Active = g17Active = g18Active = g19Active = g20Active = false;
+  g21Active = g22Active = g23Active = g24Active = g25Active = false;
   if(g5RafId) cancelAnimationFrame(g5RafId);
   g5RafId = null;
   if(g9RafId) cancelAnimationFrame(g9RafId);
@@ -1741,6 +2115,12 @@ function stopAllGames(){
   g10RafId = null;
   if(g14RafId) cancelAnimationFrame(g14RafId);
   g14RafId = null;
+  if(g19RafId) cancelAnimationFrame(g19RafId);
+  g19RafId = null;
+  if(g20RafId) cancelAnimationFrame(g20RafId);
+  g20RafId = null;
+  if(g25RafId) cancelAnimationFrame(g25RafId);
+  g25RafId = null;
 }
 function updateLivesHUD(gameKey, lives){
   document.getElementById(gameKey+'-lives').textContent = '❤️'.repeat(Math.max(lives,0)) + '🖤'.repeat(Math.max(3-lives,0));
@@ -2763,6 +3143,619 @@ function endGame15(){
   g15Active = false;
   document.getElementById('g15-status').textContent = '아쉬워요!';
   showGameOverBanner(document.getElementById('g15-wrap'), g15Sequence.length, startGame15);
+}
+
+/* ---- Game 16: 컵케이크 공장 (conveyor catch) ---- */
+let g16Active=false, g16Score=0, g16Lives=3, g16Target=null, g16Speed=3600;
+function startGame16(){
+  stopAllGames();
+  g16Active = true; g16Score=0; g16Lives=3; g16Speed=3600;
+  const track = document.getElementById('g16-track');
+  track.innerHTML = '';
+  updateLivesHUD('g16', g16Lives);
+  updateScoreHUD('g16', g16Score);
+  pickG16Target();
+  gameTimer(spawnG16Item, 1200, true);
+}
+function pickG16Target(){
+  g16Target = wordsList[Math.floor(Math.random()*wordsList.length)];
+  document.getElementById('g16-target').textContent = g16Target.emoji + ' ' + g16Target.word;
+  speakG16Target();
+}
+function speakG16Target(){ if(g16Target) speak(g16Target.word); }
+function spawnG16Item(){
+  if(!g16Active) return;
+  const track = document.getElementById('g16-track');
+  const item = wordsList[Math.floor(Math.random()*wordsList.length)];
+  const isTarget = item.word === g16Target.word;
+  const el = document.createElement('button');
+  el.className = 'conveyor-item';
+  el.textContent = '🧁 ' + item.word;
+  el.style.left = '-160px';
+  el.style.transitionDuration = g16Speed + 'ms';
+  el.dataset.isTarget = isTarget ? '1' : '0';
+  track.appendChild(el);
+  requestAnimationFrame(()=>{ el.style.left = (track.clientWidth+10)+'px'; });
+  const cleanup = ()=>{
+    if(!el.isConnected) return;
+    if(el.dataset.isTarget==='1' && g16Active){
+      g16Lives--; updateLivesHUD('g16', g16Lives);
+      if(g16Lives<=0){ endGame16(); return; }
+    }
+    el.remove();
+  };
+  el.addEventListener('transitionend', cleanup);
+  el.onclick = ()=>{
+    if(!g16Active) return;
+    if(el.dataset.isTarget==='1'){
+      g16Score++; updateScoreHUD('g16', g16Score);
+      addStar('game');
+      g16Speed = Math.max(2000, g16Speed-70);
+      pickG16Target();
+    }
+    el.remove();
+  };
+}
+function endGame16(){
+  g16Active = false;
+  stopAllGames();
+  showGameOverBanner(document.getElementById('g16-track'), g16Score, startGame16);
+}
+
+/* ---- Game 17: 잠수함 탐험 (bubble catch) ---- */
+let g17Active=false, g17Score=0, g17Lives=3, g17Target=null, g17Speed=4400;
+function startGame17(){
+  stopAllGames();
+  g17Active = true; g17Score=0; g17Lives=3; g17Speed=4400;
+  const area = document.getElementById('g17-area');
+  area.querySelectorAll('.pearl-bubble, .game-over-banner').forEach(el=>el.remove());
+  area.style.background = 'linear-gradient(#4FA8D8, #103A5C)';
+  updateLivesHUD('g17', g17Lives);
+  updateScoreHUD('g17', g17Score);
+  pickG17Target();
+  gameTimer(spawnG17Item, 1300, true);
+}
+function pickG17Target(){
+  g17Target = wordsList[Math.floor(Math.random()*wordsList.length)];
+  document.getElementById('g17-target').textContent = g17Target.emoji + ' ' + g17Target.word;
+  speakG17Target();
+}
+function speakG17Target(){ if(g17Target) speak(g17Target.word); }
+function spawnG17Item(){
+  if(!g17Active) return;
+  const area = document.getElementById('g17-area');
+  const item = wordsList[Math.floor(Math.random()*wordsList.length)];
+  const isTarget = item.word === g17Target.word;
+  const el = document.createElement('button');
+  el.className = 'pearl-bubble';
+  el.innerHTML = `<span>${item.emoji}</span><span>${item.word}</span>`;
+  el.style.left = (8 + Math.random()*72) + '%';
+  el.style.transitionDuration = g17Speed + 'ms';
+  el.dataset.isTarget = isTarget ? '1' : '0';
+  area.appendChild(el);
+  requestAnimationFrame(()=>{ el.style.bottom = '480px'; });
+  const cleanup = ()=>{
+    if(!el.isConnected) return;
+    if(el.dataset.isTarget==='1' && g17Active){
+      g17Lives--; updateLivesHUD('g17', g17Lives);
+      if(g17Lives<=0){ endGame17(); return; }
+    }
+    el.remove();
+  };
+  el.addEventListener('transitionend', cleanup);
+  el.onclick = ()=>{
+    if(!g17Active) return;
+    if(el.dataset.isTarget==='1'){
+      g17Score++; updateScoreHUD('g17', g17Score);
+      addStar('game');
+      g17Speed = Math.max(2400, g17Speed-70);
+      const depth = Math.min(g17Score*3, 40);
+      area.style.background = `linear-gradient(#4FA8D8, hsl(210,60%,${18-depth/4}%))`;
+      pickG17Target();
+    }
+    el.remove();
+  };
+}
+function endGame17(){
+  g17Active = false;
+  stopAllGames();
+  showGameOverBanner(document.getElementById('g17-area'), g17Score, startGame17);
+}
+
+/* ---- Game 18: 표적 맞추기 (pulsing ring timing) ---- */
+let g18Active=false, g18Score=0, g18Target=null;
+function startGame18(){
+  stopAllGames();
+  g18Active = true; g18Score=0;
+  document.getElementById('g18-score').textContent='⭐ 0점';
+  const oldBanner = document.querySelector('#screen-game18 .game-over-banner');
+  if(oldBanner) oldBanner.remove();
+  document.getElementById('g18-ring').style.display='';
+  document.querySelector('.shoot-btn').style.display='';
+  newG18Round();
+}
+function newG18Round(){
+  g18Target = wordsList[Math.floor(Math.random()*wordsList.length)];
+  document.getElementById('g18-target').textContent = g18Target.emoji + ' ' + g18Target.word;
+  document.getElementById('g18-ring').textContent = g18Target.word;
+  document.getElementById('g18-feedback').textContent='';
+  document.getElementById('g18-feedback').className='feedback';
+  const ring = document.getElementById('g18-ring');
+  ring.style.animation='none';
+  void ring.offsetWidth;
+  ring.style.animation='';
+  speakG18Target();
+}
+function speakG18Target(){ if(g18Target) speak(g18Target.word); }
+function shootG18(){
+  if(!g18Active) return;
+  const ring = document.getElementById('g18-ring');
+  const scale = getScaleOf(ring);
+  const fb = document.getElementById('g18-feedback');
+  if(scale >= 0.96 && scale <= 1.06){
+    g18Score++; document.getElementById('g18-score').textContent = '⭐ ' + g18Score + '점';
+    addStar('game');
+    fb.textContent = '명중이에요! 🎉';
+    fb.className='feedback ok';
+    gameTimer(newG18Round, 900, false);
+  } else {
+    fb.textContent = '아깝다! 다시 타이밍을 맞춰보세요.';
+    fb.className='feedback no';
+  }
+}
+function getScaleOf(el){
+  const st = window.getComputedStyle(el);
+  const m = st.transform;
+  if(!m || m==='none') return 1;
+  const values = m.match(/matrix\(([^)]+)\)/);
+  if(!values) return 1;
+  const parts = values[1].split(',').map(parseFloat);
+  return Math.sqrt(parts[0]*parts[0] + parts[1]*parts[1]);
+}
+
+/* ---- Game 19: 폭죽놀이 (gauge timing) ---- */
+let g19Active=false, g19Score=0, g19RafId=null, g19Start=0, g19Period=2200;
+function startGame19(){
+  stopAllGames();
+  g19Active = true; g19Score=0; g19Start = performance.now();
+  document.getElementById('g19-score').textContent='⭐ 0개';
+  document.getElementById('g19-sky').innerHTML='';
+  const oldBanner = document.querySelector('#screen-game19 .game-over-banner');
+  if(oldBanner) oldBanner.remove();
+  document.getElementById('g19-gauge').parentElement.style.display='';
+  document.querySelector('#screen-game19 .hit-btn').style.display='';
+  g19RafId = requestAnimationFrame(g19Loop);
+}
+function g19Loop(now){
+  if(!g19Active) return;
+  const t = ((now-g19Start) % g19Period) / g19Period;
+  document.getElementById('g19-gauge').style.height = (t*100)+'%';
+  g19RafId = requestAnimationFrame(g19Loop);
+}
+function launchG19(){
+  if(!g19Active) return;
+  const t = (((performance.now()-g19Start) % g19Period) / g19Period)*100;
+  const fb = document.getElementById('g19-feedback');
+  const sky = document.getElementById('g19-sky');
+  if(t >= 78){
+    g19Score++; document.getElementById('g19-score').textContent = '⭐ ' + g19Score + '개';
+    addStar('game');
+    const w = wordsList[Math.floor(Math.random()*wordsList.length)];
+    const burst = document.createElement('div');
+    burst.className='fw-burst';
+    burst.textContent = '🎆';
+    burst.style.left = (10+Math.random()*70)+'%';
+    burst.style.top = (10+Math.random()*50)+'%';
+    sky.appendChild(burst);
+    speak(w.word);
+    gameTimer(()=> burst.remove(), 800, false);
+    fb.textContent = '성공! 예쁜 불꽃이 터졌어요 🎇';
+    fb.className='feedback ok';
+  } else {
+    fb.textContent = '아직이에요, 초록 구간을 기다려보세요!';
+    fb.className='feedback no';
+  }
+  gameTimer(()=>{ fb.textContent=''; }, 900, false);
+}
+
+/* ---- Game 20: 축구 슛 게임 ---- */
+let g20Active=false, g20Score=0, g20Words=null, g20KeeperSide='left', g20Target=null, g20RafId=null;
+function startGame20(){
+  stopAllGames();
+  g20Active = true; g20Score=0;
+  document.getElementById('g20-score').textContent='⭐ 0골';
+  const oldBanner = document.querySelector('#screen-game20 .game-over-banner');
+  if(oldBanner) oldBanner.remove();
+  document.getElementById('g20-goalwrap').style.display='';
+  document.querySelector('#screen-game20 .center-row').style.display='';
+  gameTimer(g20FlipKeeper, 900, true);
+  newG20Round();
+}
+function g20FlipKeeper(){
+  if(!g20Active) return;
+  g20KeeperSide = g20KeeperSide==='left' ? 'right' : 'left';
+  const keeper = document.getElementById('g20-keeper');
+  keeper.style.left = g20KeeperSide==='left' ? '18%' : '68%';
+}
+function newG20Round(){
+  const w1 = wordsList[Math.floor(Math.random()*wordsList.length)];
+  let w2 = wordsList[Math.floor(Math.random()*wordsList.length)];
+  while(w2.word===w1.word) w2 = wordsList[Math.floor(Math.random()*wordsList.length)];
+  const targetSide = Math.random()<0.5 ? 'left':'right';
+  g20Target = targetSide==='left' ? w1 : w2;
+  document.getElementById('g20-left').textContent = w1.word;
+  document.getElementById('g20-right').textContent = w2.word;
+  document.getElementById('g20-target').textContent = g20Target.emoji + ' ' + g20Target.word;
+  document.getElementById('g20-feedback').textContent='';
+  speakG20Target();
+  g20Target._side = targetSide;
+}
+function speakG20Target(){ if(g20Target) speak(g20Target.word); }
+function shootG20(side){
+  if(!g20Active) return;
+  const fb = document.getElementById('g20-feedback');
+  if(side !== g20Target._side){
+    fb.textContent = '잘못된 골대예요! 낱말을 다시 확인해보세요.';
+    fb.className='feedback no';
+    gameTimer(newG20Round, 1200, false);
+    return;
+  }
+  if(g20KeeperSide === side){
+    fb.textContent = '골키퍼가 막았어요! 다시 도전!';
+    fb.className='feedback no';
+  } else {
+    g20Score++; document.getElementById('g20-score').textContent = '⭐ ' + g20Score + '골';
+    addStar('game');
+    fb.textContent = '골인! ⚽🎉';
+    fb.className='feedback ok';
+  }
+  gameTimer(newG20Round, 1200, false);
+}
+
+/* ---- Game 21: 눈덩이 굴리기 (growth quiz) ---- */
+let g21Active=false, g21Score=0, g21Answer=null, g21Goal=8;
+function startGame21(){
+  stopAllGames();
+  g21Active = true; g21Score=0;
+  document.getElementById('g21-score').textContent = '❄️ 0/' + g21Goal;
+  const ball = document.getElementById('g21-ball');
+  ball.style.left='10px'; ball.style.fontSize='30px';
+  document.getElementById('g21-options').style.display='';
+  const oldBanner = document.querySelector('#screen-game21 .game-over-banner');
+  if(oldBanner) oldBanner.remove();
+  newG21Round();
+}
+function newG21Round(){
+  const correctIdx = Math.floor(Math.random()*wordsList.length);
+  g21Answer = correctIdx;
+  let options=[correctIdx];
+  while(options.length<3){
+    const r = Math.floor(Math.random()*wordsList.length);
+    if(!options.includes(r)) options.push(r);
+  }
+  options.sort(()=>Math.random()-0.5);
+  const wrap = document.getElementById('g21-options');
+  wrap.innerHTML='';
+  options.forEach(i=>{
+    const b = document.createElement('button');
+    b.className='opt-btn word-opt';
+    b.textContent = wordsList[i].emoji + '  ' + wordsList[i].word;
+    b.onclick = ()=> checkG21(i, b);
+    wrap.appendChild(b);
+  });
+  speakG21Target();
+}
+function speakG21Target(){ if(g21Answer!==null) speak(wordsList[g21Answer].word); }
+function checkG21(i, btn){
+  if(!g21Active) return;
+  if(i===g21Answer){
+    g21Score++;
+    document.getElementById('g21-score').textContent = '❄️ ' + g21Score + '/' + g21Goal;
+    addStar('game');
+    const ball = document.getElementById('g21-ball');
+    const pct = g21Score/g21Goal;
+    ball.style.left = (10 + pct*480) + 'px';
+    ball.style.fontSize = (30 + pct*40) + 'px';
+    if(g21Score >= g21Goal){
+      g21Active = false;
+      document.getElementById('g21-options').style.display='none';
+      gameTimer(()=> showGameOverBanner(document.getElementById('g21-wrap'), g21Score, startGame21), 400, false);
+      return;
+    }
+    newG21Round();
+  } else {
+    btn.classList.add('shake');
+    gameTimer(()=> btn.classList.remove('shake'), 400, false);
+  }
+}
+
+/* ---- Game 22: 눈사람 만들기 (3-stage growth quiz) ---- */
+let g22Active=false, g22Score=0, g22Answer=null, g22Goal=3;
+function startGame22(){
+  stopAllGames();
+  g22Active = true; g22Score=0;
+  document.getElementById('g22-score').textContent = '☃️ 0/' + g22Goal;
+  ['g22-s1','g22-s2','g22-s3'].forEach(id=> document.getElementById(id).style.opacity='0.15');
+  document.getElementById('g22-options').style.display='';
+  const oldBanner = document.querySelector('#screen-game22 .game-over-banner');
+  if(oldBanner) oldBanner.remove();
+  newG22Round();
+}
+function newG22Round(){
+  const correctIdx = Math.floor(Math.random()*wordsList.length);
+  g22Answer = correctIdx;
+  let options=[correctIdx];
+  while(options.length<3){
+    const r = Math.floor(Math.random()*wordsList.length);
+    if(!options.includes(r)) options.push(r);
+  }
+  options.sort(()=>Math.random()-0.5);
+  const wrap = document.getElementById('g22-options');
+  wrap.innerHTML='';
+  options.forEach(i=>{
+    const b = document.createElement('button');
+    b.className='opt-btn word-opt';
+    b.textContent = wordsList[i].emoji + '  ' + wordsList[i].word;
+    b.onclick = ()=> checkG22(i, b);
+    wrap.appendChild(b);
+  });
+  speakG22Target();
+}
+function speakG22Target(){ if(g22Answer!==null) speak(wordsList[g22Answer].word); }
+function checkG22(i, btn){
+  if(!g22Active) return;
+  if(i===g22Answer){
+    g22Score++;
+    document.getElementById('g22-score').textContent = '☃️ ' + g22Score + '/' + g22Goal;
+    addStar('game');
+    document.getElementById('g22-s'+g22Score).style.opacity='1';
+    if(g22Score >= g22Goal){
+      g22Active = false;
+      document.getElementById('g22-options').style.display='none';
+      gameTimer(()=> showGameOverBanner(document.getElementById('g22-wrap'), g22Score, startGame22), 400, false);
+      return;
+    }
+    newG22Round();
+  } else {
+    btn.classList.add('shake');
+    gameTimer(()=> btn.classList.remove('shake'), 400, false);
+  }
+}
+
+/* ---- Game 23: 공 던지기 (single-ball drag toss, repeated rounds) ---- */
+let g23Active=false, g23Score=0, g23Target=null, g23HoopCount=3;
+function startGame23(){
+  stopAllGames();
+  g23Active = true; g23Score=0;
+  document.getElementById('g23-score').textContent = '⭐ 0점';
+  attachG23Drag();
+  newG23Round();
+}
+function newG23Round(){
+  const picks = [...wordsList].sort(()=>Math.random()-0.5).slice(0, g23HoopCount);
+  g23Target = picks[Math.floor(Math.random()*picks.length)];
+  document.getElementById('g23-target').textContent = g23Target.emoji + ' ' + g23Target.word;
+  speakG23Target();
+  const hoops = document.getElementById('g23-hoops');
+  hoops.innerHTML='';
+  picks.forEach(w=>{
+    const h = document.createElement('div');
+    h.className='hoop';
+    h.dataset.word = w.word;
+    h.innerHTML = `<span>${w.emoji}</span><span>${w.word}</span>`;
+    hoops.appendChild(h);
+  });
+  const ball = document.getElementById('g23-ball');
+  ball.style.position=''; ball.style.left=''; ball.style.top='';
+}
+function speakG23Target(){ if(g23Target) speak(g23Target.word); }
+function attachG23Drag(){
+  const ball = document.getElementById('g23-ball');
+  let startX=0, startY=0, origParent=ball.parentElement, origNext=ball.nextSibling;
+  ball.onpointerdown = (e)=>{
+    if(!g23Active) return;
+    ball.setPointerCapture(e.pointerId);
+    const rect = ball.getBoundingClientRect();
+    startX = e.clientX-rect.left; startY = e.clientY-rect.top;
+    origParent = ball.parentElement; origNext = ball.nextSibling;
+    ball.classList.add('dragging');
+    document.body.appendChild(ball);
+    moveBall(e);
+  };
+  ball.onpointermove = (e)=>{
+    if(!ball.classList.contains('dragging')) return;
+    moveBall(e);
+  };
+  function moveBall(e){
+    ball.style.left = (e.clientX-startX)+'px';
+    ball.style.top = (e.clientY-startY)+'px';
+  }
+  ball.onpointerup = (e)=>{
+    if(!ball.classList.contains('dragging')) return;
+    ball.classList.remove('dragging');
+    const hoop = document.elementFromPoint(e.clientX, e.clientY)?.closest('.hoop');
+    if(hoop && hoop.dataset.word === g23Target.word){
+      g23Score++; document.getElementById('g23-score').textContent = '⭐ ' + g23Score + '점';
+      addStar('game');
+      gameTimer(newG23Round, 500, false);
+    } else {
+      origParent.insertBefore(ball, origNext);
+      ball.style.position=''; ball.style.left=''; ball.style.top='';
+    }
+  };
+}
+
+/* ---- Game 24: 징검다리 건너기 (spatial sequence memory) ---- */
+let g24Active=false, g24Sequence=[], g24PlayerIndex=0, g24Phase='idle', g24Pool=[];
+const STONE_HOP_OFFSETS = [0, 92, 184, 276, 368, 460];
+function startGame24(){
+  stopAllGames();
+  g24Active = true; g24Sequence=[]; g24PlayerIndex=0;
+  document.getElementById('g24-score').textContent = '⭐ 단계 1';
+  document.getElementById('g24-status').textContent = '잘 보고 들으세요...';
+  const oldBanner = document.querySelector('#screen-game24 .game-over-banner');
+  if(oldBanner) oldBanner.remove();
+  g24Pool = [...wordsList].sort(()=>Math.random()-0.5).slice(0,5);
+  const row = document.getElementById('g24-row');
+  row.innerHTML='';
+  g24Pool.forEach((w,i)=>{
+    const stone = document.createElement('button');
+    stone.className='stone';
+    stone.textContent = w.emoji;
+    stone.dataset.idx = i;
+    stone.onclick = ()=> pressG24Stone(i, stone);
+    row.appendChild(stone);
+  });
+  const hopper = document.createElement('div');
+  hopper.className='hopper';
+  hopper.id='g24-hopper';
+  hopper.textContent='🐸';
+  hopper.style.left = STONE_HOP_OFFSETS[0]+'px';
+  row.style.position='relative';
+  row.appendChild(hopper);
+  g24Sequence.push(Math.floor(Math.random()*g24Pool.length));
+  gameTimer(playG24Sequence, 700, false);
+}
+function playG24Sequence(){
+  g24Phase = 'showing';
+  document.getElementById('g24-status').textContent = '잘 보고 들으세요...';
+  const stones = document.querySelectorAll('#g24-row .stone');
+  g24Sequence.forEach((idx, step)=>{
+    gameTimer(()=>{
+      if(!g24Active) return;
+      stones[idx].classList.add('lit');
+      speak(g24Pool[idx].word);
+      gameTimer(()=> stones[idx].classList.remove('lit'), 500, false);
+    }, step*800, false);
+  });
+  gameTimer(()=>{
+    if(!g24Active) return;
+    g24Phase='input'; g24PlayerIndex=0;
+    document.getElementById('g24-status').textContent = '이제 순서대로 돌을 밟아보세요!';
+  }, g24Sequence.length*800+200, false);
+}
+function pressG24Stone(idx, stoneEl){
+  if(!g24Active || g24Phase!=='input') return;
+  if(idx === g24Sequence[g24PlayerIndex]){
+    stoneEl.classList.add('lit');
+    const hopper = document.getElementById('g24-hopper');
+    hopper.style.left = STONE_HOP_OFFSETS[Math.min(g24PlayerIndex, STONE_HOP_OFFSETS.length-1)]+'px';
+    gameTimer(()=> stoneEl.classList.remove('lit'), 250, false);
+    g24PlayerIndex++;
+    if(g24PlayerIndex >= g24Sequence.length){
+      document.getElementById('g24-score').textContent = '⭐ 단계 ' + (g24Sequence.length+1);
+      addStar('game');
+      g24Phase='idle';
+      document.getElementById('g24-status').textContent = '건넜어요! 다음 단계 준비...';
+      g24Sequence.push(Math.floor(Math.random()*g24Pool.length));
+      gameTimer(()=>{
+        document.getElementById('g24-hopper').style.left = STONE_HOP_OFFSETS[0]+'px';
+        playG24Sequence();
+      }, 1000, false);
+    }
+  } else {
+    endGame24();
+  }
+}
+function endGame24(){
+  g24Active = false;
+  document.getElementById('g24-status').textContent = '풍덩! 물에 빠졌어요 💦';
+  showGameOverBanner(document.getElementById('g24-wrap'), g24Sequence.length, startGame24);
+}
+
+/* ---- Game 25: 우주선 대피 (hold-button dodge + collect) ---- */
+let g25Active=false, g25Score=0, g25Lives=3, g25Target=null, g25Meteors=[], g25Stars=[];
+let g25RafId=null, g25LastTime=0, g25MeteorAcc=0, g25StarAcc=0, g25ShipX=340, g25Moving=0;
+function startGame25(){
+  stopAllGames();
+  g25Active = true; g25Score=0; g25Lives=3; g25Meteors=[]; g25Stars=[]; g25MeteorAcc=0; g25StarAcc=0; g25Moving=0;
+  updateLivesHUD('g25', g25Lives);
+  updateScoreHUD('g25', g25Score);
+  const area = document.getElementById('g25-area');
+  area.querySelectorAll('.meteor-item, .starword-item, .game-over-banner').forEach(el=>el.remove());
+  g25ShipX = area.clientWidth/2 - 21;
+  document.getElementById('g25-ship').style.left = g25ShipX+'px';
+  pickG25Target();
+  const leftBtn = document.getElementById('g25-left');
+  const rightBtn = document.getElementById('g25-right');
+  const setMove = (dir)=> (e)=>{ e.preventDefault(); g25Moving = dir; };
+  const clearMove = ()=>{ g25Moving = 0; };
+  leftBtn.onpointerdown = setMove(-1); rightBtn.onpointerdown = setMove(1);
+  leftBtn.onpointerup = clearMove; rightBtn.onpointerup = clearMove;
+  leftBtn.onpointerleave = clearMove; rightBtn.onpointerleave = clearMove;
+  g25LastTime = performance.now();
+  g25RafId = requestAnimationFrame(g25Loop);
+}
+function pickG25Target(){
+  g25Target = wordsList[Math.floor(Math.random()*wordsList.length)];
+  document.getElementById('g25-target').textContent = g25Target.emoji + ' ' + g25Target.word;
+  speakG25Target();
+}
+function speakG25Target(){ if(g25Target) speak(g25Target.word); }
+function g25Loop(now){
+  if(!g25Active) return;
+  const dt = now-g25LastTime; g25LastTime = now;
+  const area = document.getElementById('g25-area');
+  const areaW = area.clientWidth, areaH = area.clientHeight;
+  const ship = document.getElementById('g25-ship');
+
+  g25ShipX = Math.min(Math.max(g25ShipX + g25Moving*0.45*dt, 0), areaW-42);
+  ship.style.left = g25ShipX+'px';
+
+  g25MeteorAcc += dt;
+  if(g25MeteorAcc > 900){
+    g25MeteorAcc = 0;
+    const el = document.createElement('div');
+    el.className='meteor-item'; el.textContent='☄️';
+    const x = Math.random()*(areaW-30);
+    el.style.left = x+'px'; el.style.top='-40px';
+    area.appendChild(el);
+    g25Meteors.push({el, x, y:-40, speed:0.16+Math.random()*0.06});
+  }
+  g25StarAcc += dt;
+  if(g25StarAcc > 2200){
+    g25StarAcc = 0;
+    const item = wordsList[Math.floor(Math.random()*wordsList.length)];
+    const el = document.createElement('div');
+    el.className='starword-item';
+    el.innerHTML = `<div>${item.emoji}</div><div>${item.word}</div>`;
+    const x = Math.random()*(areaW-70);
+    el.style.left = x+'px'; el.style.top='-50px';
+    area.appendChild(el);
+    g25Stars.push({el, x, y:-50, speed:0.13, isTarget:item.word===g25Target.word});
+  }
+
+  const shipBottom = areaH-16-40, shipTop = shipBottom-40;
+  for(let i=g25Meteors.length-1;i>=0;i--){
+    const m = g25Meteors[i];
+    m.y += m.speed*dt; m.el.style.top = m.y+'px';
+    if(m.y+34 >= shipTop && m.y <= shipBottom && m.x+30 > g25ShipX && m.x < g25ShipX+42){
+      g25Lives--; updateLivesHUD('g25', g25Lives);
+      m.el.remove(); g25Meteors.splice(i,1);
+      if(g25Lives<=0){ endGame25(); return; }
+      continue;
+    }
+    if(m.y > areaH){ m.el.remove(); g25Meteors.splice(i,1); }
+  }
+  for(let i=g25Stars.length-1;i>=0;i--){
+    const s = g25Stars[i];
+    s.y += s.speed*dt; s.el.style.top = s.y+'px';
+    if(s.y+60 >= shipTop && s.y <= shipBottom && s.x+64 > g25ShipX && s.x < g25ShipX+42){
+      if(s.isTarget){
+        g25Score++; updateScoreHUD('g25', g25Score); addStar('game'); pickG25Target();
+      }
+      s.el.remove(); g25Stars.splice(i,1);
+      continue;
+    }
+    if(s.y > areaH){ s.el.remove(); g25Stars.splice(i,1); }
+  }
+  g25RafId = requestAnimationFrame(g25Loop);
+}
+function endGame25(){
+  g25Active = false;
+  if(g25RafId) cancelAnimationFrame(g25RafId);
+  document.getElementById('g25-area').querySelectorAll('.meteor-item, .starword-item').forEach(el=>el.remove());
+  showGameOverBanner(document.getElementById('g25-area'), g25Score, startGame25);
 }
 
 /* init */
